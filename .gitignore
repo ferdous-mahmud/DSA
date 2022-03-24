@@ -1,2 +1,2 @@
-/vector.cpp__tests
-/vector.exe
+*.cpp__tests
+*.exe
