@@ -1,9 +1,10 @@
 // Pairs
 // Given an array and a number n
 // You have to find out the pairs that form the sum of number n
-// Time Complexity: O(nLog N)
+// Time Complexity: O(n)
 #include<iostream>
 #include<vector>
+#include<unordered_set>
 using namespace std;
 
 int main(){
@@ -11,19 +12,19 @@ int main(){
 	vector<int> v = {10, 5, 2, 3, -6, 9, 11};
 	int num = 21;
 
-	int start = 0;
-	int end = v.size() - 1;
+	unordered_set<int> s;
 
-	while(start != end){
+	for (int i = 0; i < v.size(); ++i)
+	{
+		int rem = num - v[i];
 
-		if(v[start] + v[end] == num){
-			cout << v[start] << ", " << v[end] << endl;
+		if(s.find(rem) != s.end()){
+			cout << rem << "," << v[i] << endl;
+			break;
 		}
 
-		start ++;
-		end --;
+		s.insert(v[i]);
 	}
-
 
 	return 0;
 }
