@@ -1,10 +1,11 @@
 // Triplets
 // Given an array and a number n
 // You have to find 3 element of array that can form the sum equals to n
-// Time Complexity: O(n ^ 3)
+// Time Complexity: O(n ^ 2)
 
 #include<iostream>
 #include<vector>
+#include<unordered_set>
 using namespace std;
 
 int main(){
@@ -13,14 +14,18 @@ int main(){
 
 	for (int i = 0; i < v.size(); ++i)
 	{
+		int rem = sum - v[i];
+		unordered_set<int> s;
+
 		for (int j = i + 1; j < v.size(); ++j)
 		{
-			for (int k = j + 1; k < v.size(); ++k)
-			{
-				if(v[i] + v[j] + v[k] == sum){
-					cout << v[i] << ", " << v[j] << ", " << v[k] << endl;
-				}
+			int nowRem = rem - v[j];
+
+			if(s.find(nowRem) != s.end()){
+				cout << v[i] << ", " << nowRem << ", " << v[j]  << endl;
 			}
+
+			s.insert(v[j]);
 		}
 	}
 
