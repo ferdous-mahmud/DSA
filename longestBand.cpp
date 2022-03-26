@@ -2,38 +2,33 @@
 // Given an Array
 // You have to find the longest band (subsequence of consecutive number)
 // consecutive number example: 1, 2, 3, 4 && 8, 9, 10 (+/- 1)
-// Time Complexity: O(nlgn) // because of sorting
+// Time Complexity: O(n) // unordered_set
 
 #include<iostream>
 #include<vector>
-#include<algorithm>
+#include<unordered_set>
 using namespace std;
 
 int main(){
 	vector<int> v = {1, 9, 3, 0, 18, 5, 2, 4, 10, 7, 12, 6};
 
-	sort(v.begin(), v.end());
+	unordered_set<int> s(v.begin(), v.end());
 
 	int count = 0;
-	bool isAdded = true;
 	int res = 0;
 
-	for (int i = 1; i < v.size();)
-	{
-		if(v[i] - v[i - 1] == 1){
-			if(isAdded){
-				count ++;
-				isAdded = false;
-			}
-			count ++;
-			i++;
-		}else{
-			count = 0;
-			i ++;
-		}
+	for(int i: v){
 
-		if(count > res){
-			res = count;
+		if(s.find(i - 1) == s.end()){
+			count = 1;
+
+			while(s.find(i + count) != s.end()){
+				count ++;
+			}
+
+			if(count > res){
+				res = count;
+			}
 		}
 	}
 
