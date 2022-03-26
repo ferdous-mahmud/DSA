@@ -8,58 +8,36 @@
 using namespace std;
 
 int main(){
-	vector<int> v = {2, 4, 2};
-	bool isIncreasing = false;
+	vector<int> arr = {5, 6, 1, 2, 3, 4, 5, 4, 3, 2, 0, 1, 2, 3, -2, 4};
 	int highest = 0;
-	int size = v.size();
+	int size = arr.size() - 1;
 
-	for (int i = 1; i < size; ++i)
+	for (int i = 1; i < size;)
 	{
-		
-		if(v[i] > v[i - 1]){
-			isIncreasing = true;
-		}
+		if(arr[i] > arr[i - 1] and arr[i] > arr[i + 1]){
+			int count = 1;
+			int j = i;
 
-		if(isIncreasing){
-			if(v[i - 1] > v[i]){
-				isIncreasing = false;
-
-				int forword = 0;
-				int backword = 0;
-				int pick = i - 1;
-				int m = pick;
-				int n = pick - 1;
-
-				while(v[m] > v[n]){
-					backword ++;
-					m --;
-					n --;
-					if(n == -1){
-                        break;
-                    }
-				}
-
-				m = pick;
-				n = pick + 1;
-
-				while(v[m] > v[n]){
-					forword ++;
-					m ++;
-					n ++;
-					if(n == size){
-                        break;
-                    }
-				}
-
-				if(forword + backword + 1 > highest){
-					highest = forword + backword + 1;
-				}
+			while(j > 0 and arr[j] > arr[j - 1]){
+				j --;
+				count ++;
 			}
+
+			while(i < size and arr[i] > arr[i + 1]){
+				i ++;
+				count ++;
+			}
+
+			if(count > highest){
+				highest = count;
+			}
+
+		}else{
+			i++;
 		}
 	}
 
 	cout << highest << endl;
-
 
 	return 0;
 }
