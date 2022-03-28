@@ -1,24 +1,21 @@
 // Strings
-
+// Find a particular string in a paragraph
 #include<iostream>
 #include<string>
 using namespace std;
 
 int main(){
 
-	// String using char array
-	char ch[100] = {'H','E','L','L','O'};
+	string s = "This is a practice paragraph for testing string.find() function";
+	string toFind = "testing";
 
-	for (int i = 0; i < 5; ++i)
-	{
-		cout << ch[i];
+	int index = s.find(toFind);
+
+	if(index != -1){
+		cout << "Index find at: " << index << endl;
+	}else{
+		cout << "Not found!";
 	}
-	cout << endl;
-
-	// Dynamic char : String
-	string s = "World";
-
-	cout << s << endl;
 
 
 	return 0;
