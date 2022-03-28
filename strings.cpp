@@ -6,17 +6,18 @@ using namespace std;
 
 int main(){
 
-	string s = "This is a practice paragraph for testing string.find() function";
-	string toFind = "testing";
+	string s = "This is an example, and this example show that, about the example";
+	string toFind = "example";
 
+	int count = 0;
 	int index = s.find(toFind);
 
-	if(index != -1){
-		cout << "Index find at: " << index << endl;
-	}else{
-		cout << "Not found!";
+	while(index != -1){
+		count ++;
+		index = s.find(toFind, index + count);
 	}
 
+	cout << count << endl;
 
 	return 0;
 }
