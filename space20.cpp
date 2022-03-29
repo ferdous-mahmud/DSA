@@ -2,27 +2,44 @@
 // Given an string
 // You have to replace all space with %20
 // Time Complexity: O(n)
-// Space Complexity: O(n) // Using extra memory to store result stringn
+// Space Complexity: O(1) // without extra memory
 
 #include<iostream>
 #include<string>
+#include <cstring>
 using namespace std;
 
 
 int main(){
-	string s = "hello world, how are you?";
-	string res = "";
+	char s[] = "hello world This is new";
+	int count = 0;
+	int i = 0;
 
-	for (int i = 0; i < s.size(); ++i)
-	{
+	while(s[i] != '\0'){
 		if(s[i] == ' '){
-			res += "%20";
+			count ++;
+		}
+		i++;
+	}
+
+	int idx =  strlen(s) + 2 * count;
+	s[idx] = '\0';
+	
+
+	for(i = strlen(s) - 1; i >= 0; i--){
+		if(s[i] == ' '){
+			s[idx - 1] = '0';
+			s[idx - 2] = '2';
+			s[idx - 3] = '%';
+			idx = idx - 3;
+
 		}else{
-			res += s[i];
+			s[idx - 1] = s[i];
+			idx --;
 		}
 	}
 
-	cout << res << endl;
+	cout << s;
 
 	return 0;
 }
